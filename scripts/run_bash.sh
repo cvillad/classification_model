@@ -9,7 +9,7 @@ if [ "$val" = "$rebuild_val" ]; then
 	docker build -t ubuntu .
 fi
  
-training_path="/opt/ml/input/data/training"
+training_path="/opt/ml/dataset"
 code_path="/opt/ml/code"
 model_path="/opt/ml/model"
 
