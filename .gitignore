@@ -126,4 +126,5 @@ dmypy.json
 
 **/data
 **/dataset
+**.jpg
 **/model
