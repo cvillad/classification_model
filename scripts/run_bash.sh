@@ -11,6 +11,8 @@ fi
  
 training_path="/opt/ml/input/data/training"
 code_path="/opt/ml/code"
+model_path="/opt/ml/model"
 
 docker run -p 8000:8888 --rm -v $(pwd)/dataset:$training_path \
-				-v $(pwd)/src:$code_path -it ubuntu bash
+				-v $(pwd)/src:$code_path \
+				-v $(pwd)/model:$model_path -it ubuntu bash
