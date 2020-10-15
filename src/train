@@ -1,0 +1,47 @@
+#!/usr/bin/env python
+import argparse
+import subprocess
+import os
+import sys
+import json
+
+default_params = ['--data',str(data_path),
+                '--model',str(model_path),
+                '--checkpoints',str(checkpoint_path), 
+                '--hyp',str(hyp_path)]
+
+def _run(cmd): 
+    logger.info('Running training script')
+    process = subprocess.Popen(cmd, env=os.environ)
+    stdout, stderr = process.communicate()
+
+    return_code = process.poll()
+    if return_code:
+        error_msg = 'Return code: {}  Err: {}'.format(return_code, stderr)
+        raise Exception(error_msg)
+
+def _hyperparameters_to_cmd_args(hyperparameters):
+    """
+    Converts our hyperparameters, in json format, into key-value pair suitable for passing to our training
+    algorithm.
+    """
+    cmd_args_list = []
+
+    for key, value in hyperparameters.items():
+        cmd_args_list.append('--{}'.format(key))
+        cmd_args_list.append(value)
+
+    return cmd_args_list
+
+def show_dirs():
+    logger.info('Container structure')
+    for root, dirs, files in os.walk(prefix):
+        for name in dirs:
+            logger.debug(os.path.join(root,name))
+        for file in files:
+            if "training" not in os.path.join(root, file) and "validating" not in os.path.join(root, file):
+                logger.debug(os.path.join(root, file))
+                
+
+if __name__=='__main__':
+    show_dirs()

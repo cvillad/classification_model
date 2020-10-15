@@ -15,6 +15,4 @@ RUN jupyter nbextension enable --py widgetsnbextension
 
 COPY src/ /opt/ml/code
 
-RUN mkdir /opt/ml/checkpoints
-
 ENV PATH="/opt/ml/code:${PATH}"
