@@ -128,3 +128,6 @@ dmypy.json
 **/dataset
 **.jpg
 **/model
+**/dataset_224
+**.tar.gz
+
